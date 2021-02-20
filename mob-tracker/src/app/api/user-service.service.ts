@@ -32,4 +32,13 @@ export class UserServiceService {
         catchError(() => of(false))
       );
   }
+
+  getMobilityList() {
+
+    const targetUrl = 'https://localhost:8080/mobilities';
+
+    return this.httpAPI.get(targetUrl).pipe(
+      map((response: any) => response?.data)
+    );
+  }
 }
