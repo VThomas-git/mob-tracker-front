@@ -7,11 +7,46 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form #registerForm="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input id="name-input" name="name" type="text" [(ngModel)]="name" #nameInput=ngModel
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Promotion</ion-label>
+        <ion-input id="promotion-input" name="promotion" type="number"
+                   [(ngModel)]="promotion" #promotionInput=ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Destination country</ion-label>
+        <ion-input id="country-input" name="country" type="text"
+                   [(ngModel)]="country" #countryInput=ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Destination city</ion-label>
+        <ion-input id="city-input" name="city" type="text"
+                   [(ngModel)]="city" #cityInput=ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Begin date</ion-label>
+        <ion-input id="begin-date-input" name="begin" type="date"
+                   [(ngModel)]="begin" #beginInput=ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">End date</ion-label>
+        <ion-input id="end-date-input" name="end" type="date"
+                   [(ngModel)]="end" #endInput=ngModel required></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-toolbar>
+    <ion-button id="register-button" expand="full" (click)="mobilityRegister()">
+      Register a new mobility
+      <ion-icon slot="end" name="register-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+
 </ion-content>

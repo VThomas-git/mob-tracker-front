@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,19 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  name: string;
+  promotion: number;
+  country: string;
+  city: string;
+  begin: string;
+  end: string;
 
+  constructor(
+    public router: Router,
+    public alertCtrl: AlertController
+  ) {}
+
+  mobilityRegister() {
+
+  }
 }
