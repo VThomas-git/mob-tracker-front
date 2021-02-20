@@ -37,7 +37,7 @@ export class Tab1Page {
             buttons: ['OK']
           });
           await alert.present();
-          await this.router.navigateByUrl('tabs/tab2');
+          await this.router.navigate(['tabs/tab2']);
         }
       }
     );
