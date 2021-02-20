@@ -16,8 +16,7 @@ export class UserServiceService {
 
   create(name: string, prom: number, country: string, city: string, begin: string, end: string) {
 
-
-    const targetUrl = environment.apiUrl;
+    const targetUrl = environment.apiUrl + '/mobilities';
 
     const body = new HttpParams()
       .set('studentName', name)
