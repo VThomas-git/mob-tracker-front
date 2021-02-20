@@ -1,14 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Output, Input, OnInit, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-mobility-list',
   templateUrl: './mobility-list.component.html',
   styleUrls: ['./mobility-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MobilityListComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  mobilityList: any;
 
-  ngOnInit() {}
+  @Output()
+  selectedMobility = new EventEmitter<number>();
+
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
 
 }
