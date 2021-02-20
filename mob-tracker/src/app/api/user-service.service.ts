@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserServiceService {
   create(name: string, prom: number, country: string, city: string, begin: string, end: string) {
 
 
-    const targetUrl = 'http://localhost:8080/mobilities';
+    const targetUrl = environment.apiUrl;
 
     const body = new HttpParams()
       .set('studentName', name)
