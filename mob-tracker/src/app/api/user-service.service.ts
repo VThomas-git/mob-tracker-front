@@ -49,7 +49,7 @@ export class UserServiceService {
 
     return this.httpAPI.get(targetUrl)
       .pipe(
-        map((response: any) => response?.data)
+        map((response: any) => response?._embedded.mobilities)
       );
   }
 

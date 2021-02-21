@@ -1,15 +1,12 @@
 <ion-list *ngFor="let mobility of mobilityList">
-  <ion-card>
-    Here is a mobility
-  </ion-card>
   <ion-card (click)="selectedMobility.emit(mobility.id)">
     <ion-card-header>
-      <ion-card-title>{{ mobility.name }} - {{ mobility.country }} - {{ mobility.city }}</ion-card-title>
+      <ion-card-title>{{ mobility.studentName }} - {{ mobility.destinationCountry }} - {{ mobility.city }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-card-content> {{ mobility.begin }}</ion-card-content>
-      <ion-card-content> {{ mobility.end }}</ion-card-content>
-      <ion-card-content> {{ mobility.created }}</ion-card-content>
+      <ion-card-content> Departure date: {{ mobility.beginDate }}</ion-card-content>
+      <ion-card-content> Return date: {{ mobility.endDate }}</ion-card-content>
+      <ion-card-content> Submission date: {{ mobility.submitDate }}</ion-card-content>
     </ion-card-content>
   </ion-card>
 </ion-list>
