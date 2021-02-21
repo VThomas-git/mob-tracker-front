@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {AlertController} from '@ionic/angular';
+import {Subscription} from 'rxjs';
+import {UserServiceService} from '../api/user-service.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +11,35 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  login$: Subscription;
 
+  name: string;
+  promotion: number;
+  country: string;
+  city: string;
+  begin: string;
+  end: string;
+
+  constructor(
+    public router: Router,
+    public userService: UserServiceService,
+    public alertCtrl: AlertController
+  ) {
+  }
+
+  mobilityRegister() {
+    this.login$ = this.userService.create(this.name, this.promotion, this.country, this.city, this.begin, this.end).subscribe(
+      async (isRegistered: any) => {
+        if (isRegistered) {
+          const alert = await this.alertCtrl.create({
+            header: 'Success',
+            message: 'The mobility has been correctly registered',
+            buttons: ['OK']
+          });
+          await alert.present();
+          await this.router.navigate(['tabs/tab2']);
+        }
+      }
+    );
+  }
 }
