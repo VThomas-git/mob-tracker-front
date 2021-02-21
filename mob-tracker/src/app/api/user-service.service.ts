@@ -47,15 +47,25 @@ export class UserServiceService {
   readMobilitiesList() {
     const targetUrl = '/mobilities';
 
-    return this.httpAPI.get(targetUrl).pipe(
-      map((response: any) => response?.data)
-    );
+    return this.httpAPI.get(targetUrl)
+      .pipe(
+        map((response: any) => response?.data)
+      );
   }
 
   readMobilityDetail(id: number): Observable<any> {
     const targetUrl = '/mobilities/';
-    return this.httpAPI.get(targetUrl + `/${id}`).pipe(
-      map((response: any) => response?.data)
-    );
+    return this.httpAPI.get(targetUrl + `/${id}`)
+      .pipe(
+        map((response: any) => response?.data)
+      );
+  }
+
+  deleteMobility(id: number) {
+    const targetUrl = '/mobilities';
+    return this.httpAPI.delete(targetUrl + `/${id}`)
+      .pipe(
+        map((response: any) => response?.data)
+      );
   }
 }
