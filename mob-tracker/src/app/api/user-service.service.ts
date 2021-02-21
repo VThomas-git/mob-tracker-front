@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
 @Injectable({
@@ -48,6 +48,13 @@ export class UserServiceService {
     const targetUrl = '/mobilities';
 
     return this.httpAPI.get(targetUrl).pipe(
+      map((response: any) => response?.data)
+    );
+  }
+
+  readMobilityDetail(id: number): Observable<any> {
+    const targetUrl = '/mobilities/';
+    return this.httpAPI.get(targetUrl + `/${id}`).pipe(
       map((response: any) => response?.data)
     );
   }
