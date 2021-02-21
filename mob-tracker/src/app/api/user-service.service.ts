@@ -43,4 +43,12 @@ export class UserServiceService {
         catchError(() => of(false))
       );
   }
+
+  readMobilitiesList() {
+    const targetUrl = '/mobilities';
+
+    return this.httpAPI.get(targetUrl).pipe(
+      map((response: any) => response?.data)
+    );
+  }
 }
