@@ -1,4 +1,7 @@
 <ion-list *ngFor="let mobility of mobilityList">
+  <ion-card>
+    Here is a mobility
+  </ion-card>
   <ion-card (click)="selectedMobility.emit(mobility.id)">
     <ion-card-header>
       <ion-card-title>{{ mobility.name }} - {{ mobility.country }} - {{ mobility.city }}</ion-card-title>
