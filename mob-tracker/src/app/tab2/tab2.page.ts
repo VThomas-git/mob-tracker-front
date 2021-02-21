@@ -23,7 +23,7 @@ export class Tab2Page implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mobilityList$ = this.userService.getMobilityList();
+    this.mobilityList$ = this.userService.readMobilitiesList();
   }
 
 }
