@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
-import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,8 @@ export class UserServiceService {
 
   create(name: string, prom: number, country: string, city: string, begin: string, end: string) {
 
-    const targetUrl = environment.apiUrl + '/mobilities';
+    // const targetUrl = environment.apiUrl + '/mobilities';
+    const targetUrl = '/mobilities';
 
     const body = new HttpParams()
       .set('studentName', name)
@@ -28,14 +28,16 @@ export class UserServiceService {
 
     const option = {
       headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
 
-    return this.httpAPI.post(targetUrl, body.toString(), option)
+    return this.httpAPI.post(targetUrl, body, option)
       .pipe(
         tap((response: any) => {
           localStorage.setItem('createdAt', response?.createdAt);
+          console.log(response.toString());
         }),
         map((response: any) => !!response?.createdAt),
         catchError(() => of(false))
