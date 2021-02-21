@@ -54,7 +54,7 @@ export class UserServiceService {
   }
 
   readMobilityDetail(id: number): Observable<any> {
-    const targetUrl = '/mobilities/';
+    const targetUrl = '/mobilities';
     return this.httpAPI.get(targetUrl + `/${id}`)
       .pipe(
         map((response: any) => response?.data)
