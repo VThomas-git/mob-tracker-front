@@ -30,7 +30,8 @@ export class MobilityListComponent implements OnInit {
   ngOnInit() {
   }
 
-  async deleteMobility(id: number) {
+  async deleteMobility(href: string) {
+    const id = href.substring(href.lastIndexOf('/') + 1 );
     this.login$ = this.userService.deleteMobility(id).subscribe(
       async (isDeleted: any) => {
         if (isDeleted) {
@@ -40,8 +41,19 @@ export class MobilityListComponent implements OnInit {
             buttons: ['OK']
           });
           await alert.present();
-          await this.router.navigate(['tabs/tab2']);
+        } else {
+          const alert = await this.alertCtrl.create({
+            header: 'Problem',
+            message: 'The request may have encountered a problem',
+            buttons: ['OK']
+          });
+          await alert.present();
         }
+        window.location.reload();
+      },
+      error => {
+        console.log(error);
+        window.location.reload();
       }
     );
   }
