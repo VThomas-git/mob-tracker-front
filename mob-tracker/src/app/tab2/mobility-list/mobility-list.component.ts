@@ -12,7 +12,7 @@ import {AlertController} from '@ionic/angular';
 })
 export class MobilityListComponent implements OnInit {
 
-  login$ = Subscription;
+  login$: Subscription;
 
   @Input()
   mobilityList: any;
