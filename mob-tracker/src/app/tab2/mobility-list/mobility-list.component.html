@@ -1,27 +1,3 @@
 <ion-list *ngFor="let mobility of mobilityList">
-  <ion-card>
-    <ion-card-header>
-      <ion-toolbar>
-        <ion-card-title>
-          {{ mobility.studentName }} - {{ mobility.destinationCountry }}
-          - {{ mobility.city }}
-        </ion-card-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="updateMobility(mobility._links.mobility.href)">
-            <ion-button>Update</ion-button>
-          </ion-button>
-          <ion-button (click)="deleteMobility(mobility._links.mobility.href)">
-            <ion-button>Delete</ion-button>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-
-
-    </ion-card-header>
-    <ion-card-content>
-      <ion-card-content> Departure date: {{ mobility.beginDate }}</ion-card-content>
-      <ion-card-content> Return date: {{ mobility.endDate }}</ion-card-content>
-      <ion-card-content> Submission date: {{ mobility.submitDate }}</ion-card-content>
-    </ion-card-content>
-  </ion-card>
+  <ion-mobility-card [mobility]="mobility"></ion-mobility-card>
 </ion-list>
