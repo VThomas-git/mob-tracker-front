@@ -57,4 +57,8 @@ export class MobilityListComponent implements OnInit {
       }
     );
   }
+
+  updateMobility(href: string | SVGAnimatedString) {
+
+  }
 }

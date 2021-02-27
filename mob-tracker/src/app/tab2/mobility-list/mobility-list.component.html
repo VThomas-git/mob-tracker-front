@@ -7,6 +7,9 @@
           - {{ mobility.city }}
         </ion-card-title>
         <ion-buttons slot="end">
+          <ion-button (click)="updateMobility(mobility._links.mobility.href)">
+            <ion-button>Update</ion-button>
+          </ion-button>
           <ion-button (click)="deleteMobility(mobility._links.mobility.href)">
             <ion-button>Delete</ion-button>
           </ion-button>
