@@ -32,8 +32,32 @@ export class MobilityCardComponent implements OnInit {
     this.updateForm = !this.updateForm;
   }
 
-  mobilityUpdate() {
-
+  mobilityUpdate(href: string) {
+    const id = href.substring(href.lastIndexOf('/') + 1);
+    this.login$ = this.userService.updateMobility(this.mobility, id).subscribe(
+      async (isUpdated: any) => {
+        if (isUpdated) {
+          const alert = await this.alertCtrl.create({
+            header: 'Success',
+            message: 'The mobility has been correctly updated',
+            buttons: ['OK']
+          });
+          await alert.present();
+        } else {
+          const alert = await this.alertCtrl.create({
+            header: 'Problem',
+            message: 'The request may have encountered a problem',
+            buttons: ['OK']
+          });
+          await alert.present();
+        }
+        window.location.reload();
+      },
+      error => {
+        console.log(error);
+        window.location.reload();
+      }
+    );
   }
 
   async deleteMobility(href: string) {
