@@ -61,7 +61,7 @@ export class UserServiceService {
       );
   }
 
-  deleteMobility(id: number) {
+  deleteMobility(id: string) {
     const targetUrl = '/mobilities';
     return this.httpAPI.delete(targetUrl + `/${id}`)
       .pipe(
