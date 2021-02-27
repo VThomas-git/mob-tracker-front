@@ -28,19 +28,19 @@ export class Tab1Page {
     this.mobility.submitDate = new Date();
     this.login$ = this.userService.create(this.mobility)
       .subscribe(
-      async (isRegistered: any) => {
-        if (isRegistered) {
-          const alert = await this.alertCtrl.create({
-            header: 'Success',
-            message: 'The mobility has been correctly registered',
-            buttons: ['OK']
-          });
-          await alert.present();
-          await this.router.navigate(['tabs/tab2']);
-        } else {
-          window.location.reload();
+        async (isRegistered: any) => {
+          if (isRegistered) {
+            const alert = await this.alertCtrl.create({
+              header: 'Success',
+              message: 'The mobility has been correctly registered',
+              buttons: ['OK']
+            });
+            await alert.present();
+            await this.router.navigate(['tabs/tab2']);
+          } else {
+            window.location.reload();
+          }
         }
-      }
-    );
+      );
   }
 }
