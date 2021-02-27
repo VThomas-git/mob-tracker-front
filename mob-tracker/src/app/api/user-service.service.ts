@@ -4,12 +4,17 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Mobility} from '../shared/mobility.model';
 
-const targetUrl = '/mobilities';
-
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
+
+  private targetUrl = '/mobilities';
+  private option = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+    })
+  };
 
   constructor(
     public httpAPI: HttpClient
@@ -18,14 +23,7 @@ export class UserServiceService {
 
   create(mobility: Mobility) {
 
-    const option = {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*',
-        // 'Content-Type': 'alication/x-www-form-urlencoded'
-      })
-    };
-
-    return this.httpAPI.post(targetUrl, mobility, option)
+    return this.httpAPI.post(this.targetUrl, mobility, this.option)
       .pipe(
         tap((response: any) => {
           console.log(response.toString());
@@ -36,21 +34,23 @@ export class UserServiceService {
   }
 
   readMobilitiesList() {
-    return this.httpAPI.get(targetUrl)
+    return this.httpAPI.get(this.targetUrl)
       .pipe(
         map((response: any) => response?._embedded.mobilities)
       );
   }
 
-  readMobilityDetail(id: number): Observable<any> {
-    return this.httpAPI.get(targetUrl + `/${id}`)
+  updateMobility(mobility: Mobility, id: string): Observable<Mobility> {
+    return this.httpAPI.put<Mobility>(this.targetUrl + `/${id}`, mobility, this.option)
       .pipe(
-        map((response: any) => response?.data)
+        tap((response: any) => {
+          console.log(response.toString());
+        }),
       );
   }
 
   deleteMobility(id: string) {
-    return this.httpAPI.delete(targetUrl + `/${id}`)
+    return this.httpAPI.delete(this.targetUrl + `/${id}`)
       .pipe(
         map((response: any) => response?.data)
       );

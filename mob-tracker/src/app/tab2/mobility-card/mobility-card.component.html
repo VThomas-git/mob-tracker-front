@@ -1,0 +1,69 @@
+<ion-card>
+  <ion-card-header>
+    <ion-toolbar>
+      <ion-card-title>
+        {{ mobility.studentName }} - {{ mobility.destinationCountry }}
+        - {{ mobility.city }}
+      </ion-card-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="showUpdateMobility()">
+          <ion-button>Update</ion-button>
+        </ion-button>
+        <ion-button (click)="deleteMobility(mobility._links.mobility.href)">
+          <ion-button>Delete</ion-button>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-card-content> Departure date: {{ mobility.beginDate }}</ion-card-content>
+    <ion-card-content> Return date: {{ mobility.endDate }}</ion-card-content>
+    <ion-card-content> Submission date: {{ mobility.submitDate }}</ion-card-content>
+  </ion-card-content>
+
+  <ion-card-content *ngIf="updateForm">
+  <form #updateForm="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input id="name-input" name="name" type="text" [(ngModel)]="mobility.studentName" #nameInput=ngModel
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Promotion</ion-label>
+        <ion-input id="promotion-input" name="promotion" type="number"
+                   [(ngModel)]="mobility.prom" #promotionInput=ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Destination country</ion-label>
+        <ion-input id="country-input" name="country" type="text"
+                   [(ngModel)]="mobility.destinationCountry" #countryInput=ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Destination city</ion-label>
+        <ion-input id="city-input" name="city" type="text"
+                   [(ngModel)]="mobility.city" #cityInput=ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Begin date</ion-label>
+        <ion-input id="begin-date-input" name="begin" type="date"
+                   [(ngModel)]="mobility.beginDate" #beginInput=ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">End date</ion-label>
+        <ion-input id="end-date-input" name="end" type="date"
+                   [(ngModel)]="mobility.endDate" #endInput=ngModel required></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <ion-toolbar>
+    <ion-button id="register-button" expand="full" (click)="mobilityUpdate(mobility._links.mobility.href)">
+      Update the mobility
+      <ion-icon slot="end" name="register-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+  </ion-card-content>
+
+</ion-card>
