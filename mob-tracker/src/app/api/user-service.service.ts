@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
+import {Mobility} from '../shared/mobility.model';
+
+const targetUrl = '/mobilities';
 
 @Injectable({
   providedIn: 'root'
@@ -13,30 +16,18 @@ export class UserServiceService {
   ) {
   }
 
-  create(name: string, prom: number, country: string, city: string, begin: string, end: string) {
-
-    // const targetUrl = environment.apiUrl + '/mobilities';
-    const targetUrl = '/mobilities';
-
-    const body = new HttpParams()
-      .set('studentName', name)
-      .set('prom', String(prom))
-      .set('city', city)
-      .set('destinationCountry', country)
-      .set('beginDate', begin)
-      .set('endDate', end);
+  create(mobility: Mobility) {
 
     const option = {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/x-www-form-urlencoded'
+        // 'Content-Type': 'alication/x-www-form-urlencoded'
       })
     };
 
-    return this.httpAPI.post(targetUrl, body, option)
+    return this.httpAPI.post(targetUrl, mobility, option)
       .pipe(
         tap((response: any) => {
-          localStorage.setItem('createdAt', response?.createdAt);
           console.log(response.toString());
         }),
         map((response: any) => !!response?.createdAt),
@@ -45,8 +36,6 @@ export class UserServiceService {
   }
 
   readMobilitiesList() {
-    const targetUrl = '/mobilities';
-
     return this.httpAPI.get(targetUrl)
       .pipe(
         map((response: any) => response?._embedded.mobilities)
@@ -54,7 +43,6 @@ export class UserServiceService {
   }
 
   readMobilityDetail(id: number): Observable<any> {
-    const targetUrl = '/mobilities';
     return this.httpAPI.get(targetUrl + `/${id}`)
       .pipe(
         map((response: any) => response?.data)
@@ -62,7 +50,6 @@ export class UserServiceService {
   }
 
   deleteMobility(id: string) {
-    const targetUrl = '/mobilities';
     return this.httpAPI.delete(targetUrl + `/${id}`)
       .pipe(
         map((response: any) => response?.data)

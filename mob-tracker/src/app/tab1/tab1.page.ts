@@ -4,6 +4,8 @@ import {AlertController} from '@ionic/angular';
 import {Subscription} from 'rxjs';
 import {UserServiceService} from '../api/user-service.service';
 
+import {Mobility} from '../shared/mobility.model';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -13,12 +15,7 @@ export class Tab1Page {
 
   login$: Subscription;
 
-  name: string;
-  promotion: number;
-  country: string;
-  city: string;
-  begin: string;
-  end: string;
+  mobility: Mobility = new Mobility();
 
   constructor(
     public router: Router,
@@ -28,7 +25,9 @@ export class Tab1Page {
   }
 
   mobilityRegister() {
-    this.login$ = this.userService.create(this.name, this.promotion, this.country, this.city, this.begin, this.end).subscribe(
+    this.mobility.submitDate = new Date();
+    this.login$ = this.userService.create(this.mobility)
+      .subscribe(
       async (isRegistered: any) => {
         if (isRegistered) {
           const alert = await this.alertCtrl.create({
@@ -38,6 +37,8 @@ export class Tab1Page {
           });
           await alert.present();
           await this.router.navigate(['tabs/tab2']);
+        } else {
+          window.location.reload();
         }
       }
     );
