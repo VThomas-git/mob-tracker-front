@@ -4,8 +4,6 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Mobility} from '../shared/mobility.model';
 
-const targetUrl = '/mobilities';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -42,8 +40,8 @@ export class UserServiceService {
       );
   }
 
-  updateMobility(mobility: Mobility): Observable<Mobility> {
-    return this.httpAPI.put<Mobility>(this.targetUrl, mobility, this.option)
+  updateMobility(mobility: Mobility, id: string): Observable<Mobility> {
+    return this.httpAPI.put<Mobility>(this.targetUrl + `/${id}`, mobility, this.option)
       .pipe(
         tap((response: any) => {
           console.log(response.toString());
@@ -52,7 +50,7 @@ export class UserServiceService {
   }
 
   deleteMobility(id: string) {
-    return this.httpAPI.delete(targetUrl + `/${id}`)
+    return this.httpAPI.delete(this.targetUrl + `/${id}`)
       .pipe(
         map((response: any) => response?.data)
       );
