@@ -1,3 +1,45 @@
+<ion-card>
+  <ion-card-header>
+    <ion-title>
+      Filter
+    </ion-title>
+    <ion-buttons>
+      <ion-button (click)="showNameFilter()">
+        Name
+      </ion-button>
+      <ion-button (click)="showCountryFilter()">
+        Country
+      </ion-button>
+      <ion-button (click)="showDateFilter()">
+        Date
+      </ion-button>
+      <ion-button (click)="showPromotionFilter()">
+        Promotion
+      </ion-button>
+    </ion-buttons>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-input type="text" *ngIf="nameFilter" [ngModel]="nameFiltered$">
+      Name:
+    </ion-input>
+  </ion-card-content>
+  <ion-card-content>
+    <ion-input type="text" *ngIf="countryFilter" [ngModel]="countryFiltered$">
+      Country:
+    </ion-input>
+  </ion-card-content>
+  <ion-card-content>
+    <ion-input type="date" *ngIf="dateFilter" [ngModel]="dateFiltered$">
+      Date:
+    </ion-input>
+  </ion-card-content>
+  <ion-card-content>
+    <ion-input type="number" *ngIf="promotionFilter" [ngModel]="promotionFiltered$">
+      Promotion:
+    </ion-input>
+  </ion-card-content>
+</ion-card>
+
 <ion-list *ngFor="let mobility of mobilityList">
   <app-mobility-card [mobility]="mobility"></app-mobility-card>
 </ion-list>

@@ -1,7 +1,7 @@
 import {IonicModule} from '@ionic/angular';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Tab2Page} from './tab2.page';
 import {ExploreContainerComponentModule} from '../explore-container/explore-container.module';
 
@@ -15,7 +15,8 @@ import {MobilityCardComponent} from './mobility-card/mobility-card.component';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab2PageRoutingModule
+    Tab2PageRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [Tab2Page, MobilityListComponent, MobilityCardComponent]
 })
