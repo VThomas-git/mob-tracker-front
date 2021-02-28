@@ -15,6 +15,16 @@ export class MobilityCardComponent implements OnInit {
 
   @Input()
   mobility: any;
+  @Input()
+  nameFiltered: string;
+  @Input()
+  countryFiltered: string;
+  @Input()
+  dateFiltered: Date;
+  @Input()
+  originDate: Date;
+  @Input()
+  promFiltered: number;
 
   updateForm = false;
 
@@ -88,4 +98,11 @@ export class MobilityCardComponent implements OnInit {
     );
   }
 
+  isViewable() {
+    return this.mobility.studentName.toLowerCase().includes(this.nameFiltered.toLowerCase()) &&
+      this.mobility.destinationCountry.toLowerCase().includes(this.countryFiltered.toLowerCase()) &&
+      (this.dateFiltered === this.originDate || this.mobility.beginDate === this.dateFiltered) &&
+      (this.dateFiltered === this.originDate || this.mobility.endDate === this.dateFiltered) &&
+      (this.promFiltered === 0 || this.mobility.prom === this.promFiltered);
+  }
 }

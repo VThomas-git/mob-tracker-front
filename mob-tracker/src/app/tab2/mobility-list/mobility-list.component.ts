@@ -2,9 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {UserServiceService} from '../../api/user-service.service';
 import {Router} from '@angular/router';
 import {AlertController} from '@ionic/angular';
-import {FormControl} from '@angular/forms';
-import {filter, map, startWith} from 'rxjs/operators';
-import {combineLatest, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-mobility-list',
@@ -21,14 +19,19 @@ export class MobilityListComponent implements OnInit {
   promotionFilter = false;
 
   @Input()
-  mobilityList: any;
+  mobilityList: Observable<any>;
+
+  nameFiltered$ = '';
+  countryFiltered$ = '';
+  originDate$ = new Date(0, 0, 0);
+  dateFiltered$ = this.originDate$;
+  promotionFiltered$ = 0;
 
   constructor(
     public router: Router,
     public userService: UserServiceService,
     public alertCtrl: AlertController
   ) {
-
   }
 
   ngOnInit() {

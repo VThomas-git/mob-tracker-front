@@ -10,7 +10,7 @@ import {UserServiceService} from '../api/user-service.service';
 })
 export class Tab2Page implements OnInit {
 
-  mobilityList$: Observable<any>;
+  mobilityList$: Observable<any[]>;
 
   constructor(
     public router: Router,

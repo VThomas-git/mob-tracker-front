@@ -19,27 +19,32 @@
     </ion-buttons>
   </ion-card-header>
   <ion-card-content>
-    <ion-input type="text" *ngIf="nameFilter" [ngModel]="nameFiltered$">
+    <ion-input type="text" *ngIf="nameFilter" [(ngModel)]="nameFiltered$">
       Name:
     </ion-input>
   </ion-card-content>
   <ion-card-content>
-    <ion-input type="text" *ngIf="countryFilter" [ngModel]="countryFiltered$">
+    <ion-input type="text" *ngIf="countryFilter" [(ngModel)]="countryFiltered$">
       Country:
     </ion-input>
   </ion-card-content>
   <ion-card-content>
-    <ion-input type="date" *ngIf="dateFilter" [ngModel]="dateFiltered$">
+    <ion-input type="date" *ngIf="dateFilter" [(ngModel)]="dateFiltered$">
       Date:
     </ion-input>
   </ion-card-content>
   <ion-card-content>
-    <ion-input type="number" *ngIf="promotionFilter" [ngModel]="promotionFiltered$">
+    <ion-input type="number" *ngIf="promotionFilter" [(ngModel)]="promotionFiltered$">
       Promotion:
     </ion-input>
   </ion-card-content>
 </ion-card>
 
 <ion-list *ngFor="let mobility of mobilityList">
-  <app-mobility-card [mobility]="mobility"></app-mobility-card>
+  <app-mobility-card [mobility]="mobility"
+                     [nameFiltered]="nameFiltered$"
+                     [countryFiltered]="countryFiltered$"
+                     [dateFiltered]="dateFiltered$"
+                     [originDate]="originDate$"
+                     [promFiltered]="promotionFiltered$"></app-mobility-card>
 </ion-list>
